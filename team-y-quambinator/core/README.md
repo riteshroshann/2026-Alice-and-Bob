@@ -1,5 +1,9 @@
 # Classical RS Error Correction
-In classical RS error correction, we encode a message $m=\begin{bmatrix} m_0 & m_1 & m_2 & m_3 \end{bmatrix}$ into a function $f(x)=m_0 x^0 + m_1 x^1 + m_2 x^2 + m_3 x^3$. We then sample redundant points on the function so that even when some function values, which are passed as the code, are lost, the function, and hence the message bits, could still be recovered.
+In classical RS error correction, we encode a message 
+
+$$m=\begin{bmatrix} m_0 & m_1 & m_2 & m_3 \end{bmatrix}$$
+
+ into a function $f(x)=m_0 x^0 + m_1 x^1 + m_2 x^2 + m_3 x^3$. We then sample redundant points on the function so that even when some function values, which are passed as the code, are lost, the function, and hence the message bits, could still be recovered.
 
 ## Finite Galois Field
 We apply the arithmetic logic of $GF(2^m)$ to extract the polynomial from our input message.
@@ -10,6 +14,7 @@ For example, $3+3$ in $GF(8)$ should be interpreted as the addition of polynomia
 ## Generators
 
 $2$ is a primitive element which, when self-multiplied, genereates every non-zero element of the field. We use this to generate $x^1$ and then calculate the other powers, which are combined into the symmtrical generator $G_{sym}$. In the case of the $[[21,12,4]]$ code, which we should use implicitly in this README,
+
 $$ 
 G_{sym} = \begin{bmatrix}
 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
