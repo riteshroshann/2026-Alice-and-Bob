@@ -24,3 +24,6 @@ $$m\cdot G_{sym}=c$$
 in other words, $G_{sym}$ transforms the 4-digit $m$ into the 7-digit codeword $c$.
 
 # Quantum RS Error Correction
+The goal is to implement $G_{sym}$ in a quantum computer. We first transform each entry into $G_{bin}$, a $3\times3$ matrix of binaries. Then we find the encoder $G_s=\left[ I \mid P \right]$, the Row Reduced Echelon Form of such a matrix. Here, $P$ is the parity matrix. The $1$'s in $P$ gives us the locations to insert the $CX$ gates. We may also construct the decoder $H=\left[ P^T \mid I \right]$, which gives the syndrome. Then we use a pre-calculated lookup table to determine the position of errors corresponding to the syndrome.
+
+Note that the [existing](http://arxiv.org/pdf/quant-ph/9910059) quantum implementation of the quantum RS code requires discrete fourier transform. But this is not implementable with Stim as it required non-Clifford gates. This is also redundant for cat-qubits because it also corrects for phase-flip errors, which is suppressed. Even such an approach is implemented, it does not leverage the advantage of cat-qubits.
